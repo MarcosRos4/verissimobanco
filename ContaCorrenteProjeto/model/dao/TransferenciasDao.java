@@ -1,6 +1,5 @@
-package ContaCorrenteProjeto.controller;
+package ContaCorrenteProjeto.model.dao;
 
-import ContaCorrenteProjeto.model.dao.Conexao;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
