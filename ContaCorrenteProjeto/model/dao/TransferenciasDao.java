@@ -10,13 +10,12 @@ public class TransferenciasDao {
     ResultSet result = conexao.getResult();
 
     public void criarTransferencia(String conta_comeco,String conta_destino, String valor){
-        System.out.println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨");
         try { 
             stm.executeUpdate(String.format(
                 "INSERT INTO transferencias (`numero_da_transferencia`,`valor`,`contas_numero_da_conta`, `conta_destino`, `horario_transferencia`)"+
                 // valores numero_da_conta é gerado automaticamente pelo BD, o saldo default é 0
                 " VALUES(default,'%s', '%s', '%s', default);",valor,conta_comeco,conta_destino));
-            System.out.println("Transferência concluida com sucesso");
+            System.out.println("Transferência criada com sucesso");
 
         } catch(Exception e) {
             System.out.println("Erro na Inclusão: "+ e.getMessage());
