@@ -1,6 +1,5 @@
 package ContaCorrenteProjeto.model.dao;
 
-
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -11,27 +10,37 @@ public class TransferenciasDao {
     ResultSet result = conexao.getResult();
 
     public void criarTransferencia(String conta_comeco,String conta_destino, String valor){
-        try {
-            String query = String.format(
-                    "INSERT INTO transferencias (`contas_numero_da_conta`, `conta_destino`, `valor`)"+
-                            // valores numero_da_conta é gerado automaticamente pelo BD, o saldo default é 0
-                            " VALUES('%s', '%s', '%s');",conta_comeco,conta_destino,valor);
-            stm.executeUpdate(query);
+        System.out.println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨");
+        try { 
+            stm.executeUpdate(String.format(
+                "INSERT INTO transferencias (`numero_da_transferencia`,`valor`,`contas_numero_da_conta`, `conta_destino`, `horario_transferencia`)"+
+                // valores numero_da_conta é gerado automaticamente pelo BD, o saldo default é 0
+                " VALUES(default,'%s', '%s', '%s', default);",valor,conta_comeco,conta_destino));
+            System.out.println("Transferência concluida com sucesso");
+
         } catch(Exception e) {
-            System.out.println("Erro na Inclusao: "+ e);
+            System.out.println("Erro na Inclusão: "+ e.getMessage());
         }
     }
 
-    public String mostrarExtrato(String numero_conta){
+    public void getExtrato(String numero_da_conta){
 
         try {
-            String minhaQuery = String.format("SELECT * FROM transferencias WHERE conta_destino = %s", numero_conta);
+            String minhaQuery = String.format("SELECT * FROM transferencias WHERE contas_numero_da_conta = %s",
+            numero_da_conta);
             result = stm.executeQuery(minhaQuery);
-            result.next();
-            return result.getString(1);
+            if (!result.next()) {
+                System.out.println("Nenhuma transferência efetuada a partir dessa conta.");
+            }
+
+            while (result.next()) {
+                System.out.println(String.format("Transferência %s | Conta destino: %s | Valor R$: %s | Horário da Transferência: %s",
+                result.getString("numero_da_transferencia"), result.getString("conta_destino"),
+                result.getString("valor"), result.getString("horario_transferencia")));
+            }
+
         } catch(Exception e) {
-            System.out.println("Erro na Inclusao: "+ e);
-            return "Conta não encontrado";
+            System.out.println("Erro na Exibição de Extrato: "+ e);
         }
 
 
