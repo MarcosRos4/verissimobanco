@@ -51,14 +51,12 @@ public class ContasDao {
     // retorna o saldo atual de uma dada conta
     public float getSaldo(String numero_da_conta) {
         try {
-            String minhaQuery = String.format("SELECT saldo FROM contas WHERE numero_da_conta = %s",
-            numero_da_conta);
-            result = stm.executeQuery(minhaQuery);
+            result = stm.executeQuery(String.format("SELECT saldo FROM contas WHERE numero_da_conta = %s",
+            numero_da_conta));
             result.next();
             return result.getFloat(1);
         } catch(Exception e) {
-            System.out.println("Erro no getSaldo: "+ e);
-            return -1;
+            return 0;
         }
     }
     // exclui uma conta a partir de um numero_da_conta
@@ -80,8 +78,8 @@ public class ContasDao {
             result.next();
             return result.getString(1);
         } catch(Exception e) {
-            System.out.println("Erro no getSaldo: "+ e);
-            return "Nome não encontrado";
+            System.out.println("Conta não encontrada.");
+            return null;
         }
     }
 
