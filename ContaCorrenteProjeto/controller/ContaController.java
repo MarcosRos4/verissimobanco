@@ -13,7 +13,7 @@ public class ContaController {
     // recebe um valor float para sacar
     public boolean saque(float valor){
         // se o valor for menor que o saldo disponível ele executa o saque
-        if (this.conta.getSaldo(this.numero_da_conta) > valor) {
+        if (this.conta.getSaldo(this.numero_da_conta) >= valor) {
             this.conta.setSaldo(this.numero_da_conta, String.format("%s",(this.conta.getSaldo(this.numero_da_conta) - valor)));
             System.out.println("Saque Concluido");
             return true;
@@ -32,16 +32,12 @@ public class ContaController {
         System.out.println("Depósito Concluido");
     }
 
-    public String getNumero_da_conta() {
-        return this.numero_da_conta;
-    }
-
     public String verSaldo() {
         return String.format("Saldo atual R$: %s", this.conta.getSaldo(this.numero_da_conta));
     }
     
     public float getSaldo(){
-        return this.conta.getSaldo(numero_da_conta);
+        return this.conta.getSaldo(this.numero_da_conta);
     }
 
 }
