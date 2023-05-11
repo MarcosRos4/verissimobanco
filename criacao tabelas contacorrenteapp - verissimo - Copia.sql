@@ -41,9 +41,7 @@ CREATE TABLE IF NOT EXISTS `contacorrentedb`.`contas` (
   INDEX `fk_contas_agencias1_idx` (`agencias_numero_da_agencia` ASC) VISIBLE,
   CONSTRAINT `fk_contas_agencias1`
     FOREIGN KEY (`agencias_numero_da_agencia`)
-    REFERENCES `contacorrentedb`.`agencias` (`numero_da_agencia`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `contacorrentedb`.`agencias` (`numero_da_agencia`))
 ENGINE = InnoDB;
 
 
@@ -61,9 +59,7 @@ CREATE TABLE IF NOT EXISTS `contacorrentedb`.`transferencias` (
   INDEX `fk_transferencia_contas_idx` (`contas_numero_da_conta` ASC) VISIBLE,
   CONSTRAINT `fk_transferencia_contas`
     FOREIGN KEY (`contas_numero_da_conta`)
-    REFERENCES `contacorrentedb`.`contas` (`numero_da_conta`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `contacorrentedb`.`contas` (`numero_da_conta`))
 ENGINE = InnoDB;
 
 CREATE USER 'user1';
