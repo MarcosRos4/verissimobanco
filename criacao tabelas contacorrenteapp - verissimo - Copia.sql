@@ -27,6 +27,19 @@ CREATE TABLE IF NOT EXISTS `contacorrentedb`.`agencias` (
   UNIQUE INDEX `numero_da_agencia_UNIQUE` (`numero_da_agencia` ASC) VISIBLE)
 ENGINE = InnoDB;
 
+-- ADICIONANDO AGENCIAS NA CRIAÇÃO DA DATABASE
+INSERT INTO `contacorrentedb`.`agencias` (`numero_da_agencia`,`nome_gerente`)
+VALUES (default, "Marcos");
+
+INSERT INTO `contacorrentedb`.`agencias` (`numero_da_agencia`,`nome_gerente`)
+VALUES (default, "Ivo");
+
+INSERT INTO `contacorrentedb`.`agencias` (`numero_da_agencia`,`nome_gerente`)
+VALUES (default, "Thomas");
+
+INSERT INTO `contacorrentedb`.`agencias` (`numero_da_agencia`,`nome_gerente`)
+VALUES (default, "Matulis");
+
 
 -- -----------------------------------------------------
 -- Table `contacorrentedb`.`contas`
@@ -44,6 +57,20 @@ CREATE TABLE IF NOT EXISTS `contacorrentedb`.`contas` (
     REFERENCES `contacorrentedb`.`agencias` (`numero_da_agencia`))
 ENGINE = InnoDB;
 
+-- ADICIONANDO CONTAS NA CRIAÇÃO DA DATABASE
+INSERT INTO `contacorrentedb`.`contas` (`numero_da_conta`, `nome`, `saldo`, `agencias_numero_da_agencia`)
+VALUES (default, "Marcos Rosa", default, "1");
+
+INSERT INTO `contacorrentedb`.`contas` (`numero_da_conta`, `nome`, `saldo`, `agencias_numero_da_agencia`)
+VALUES (default, "Ivo Bueno", default, "2");
+
+INSERT INTO `contacorrentedb`.`contas` (`numero_da_conta`, `nome`, `saldo`, `agencias_numero_da_agencia`)
+VALUES (default, "Thomas Ferreira", default, "3");
+
+INSERT INTO `contacorrentedb`.`contas` (`numero_da_conta`, `nome`, `saldo`, `agencias_numero_da_agencia`)
+VALUES (default, "Lucas Matulis", default, "4");
+
+
 
 -- -----------------------------------------------------
 -- Table `contacorrentedb`.`transferencias`
@@ -53,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `contacorrentedb`.`transferencias` (
   `valor` FLOAT NULL DEFAULT 0,
   `contas_numero_da_conta` INT NOT NULL,
   `conta_destino` INT NOT NULL,
-  `horario_tranferencia` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `horario_transferencia` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`numero_da_transferencia`, `contas_numero_da_conta`),
   UNIQUE INDEX `numero_do_extrato_UNIQUE` (`numero_da_transferencia` ASC) VISIBLE,
   INDEX `fk_transferencia_contas_idx` (`contas_numero_da_conta` ASC) VISIBLE,
