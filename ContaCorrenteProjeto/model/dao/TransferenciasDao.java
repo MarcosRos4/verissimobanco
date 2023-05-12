@@ -23,7 +23,6 @@ public class TransferenciasDao {
     }
 
     public void getExtrato(String numero_da_conta){
-
         try {
             String minhaQuery = String.format("SELECT * FROM transferencias WHERE contas_numero_da_conta = %s",
             numero_da_conta);
@@ -33,6 +32,7 @@ public class TransferenciasDao {
             }
 
             while (result.next()) {
+
                 System.out.println(String.format("Transferência %s | Conta destino: %s | Valor R$: %s | Horário da Transferência: %s",
                 result.getString("numero_da_transferencia"), result.getString("conta_destino"),
                 result.getString("valor"), result.getString("horario_transferencia")));
