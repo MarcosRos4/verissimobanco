@@ -17,6 +17,7 @@ public class App {
 
     public static void main(String[] args) {
         // o aplicativo começa com duas opções, ou logar com uma conta já existente ou criar uma nova conta
+
         interfacegrafica.imprimir("Deseja fazer Login(0) ou Cadastrar nova Conta(1)?\nResposta: ");
         respostaString = interfacegrafica.receberString();
         while (true) {
