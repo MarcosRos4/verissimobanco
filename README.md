@@ -11,3 +11,6 @@ faz as regras de negócio do programa, como saque e depósito
 é a interface gráfica do programa, que no caso é através do terminal
 ### App
 é onde o método main se encontra para copilar o programa.
+
+## Configuração
+Cada servidor sql tem uma senha própria, lembrar de alterar a senha no arquivo Conexão.java dentro do método construtor
