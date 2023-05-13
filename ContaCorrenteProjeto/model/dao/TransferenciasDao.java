@@ -31,12 +31,12 @@ public class TransferenciasDao {
                 System.out.println("Nenhuma transferência efetuada a partir dessa conta.");
             }
 
-            while (result.next()) {
-
+            do {
                 System.out.println(String.format("Transferência %s | Conta destino: %s | Valor R$: %s | Horário da Transferência: %s",
                 result.getString("numero_da_transferencia"), result.getString("conta_destino"),
                 result.getString("valor"), result.getString("horario_transferencia")));
-            }
+            } while (result.next());
+            
 
         } catch(Exception e) {
             System.out.println("Erro na Exibição de Extrato: "+ e);
