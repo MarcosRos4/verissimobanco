@@ -12,4 +12,5 @@ contém as classes de interface gráfica da aplicação
 
 ## Configuração
 Cada servidor sql tem uma senha própria, lembrar de alterar a senha no arquivo Conexão.java dentro do método construtor
-\nQuando o banco de dados é criado ele insere automaticamente 4 agências de id 1-4 e 4 contas de id 1-4
+
+Quando o banco de dados é criado ele insere automaticamente 4 agências de id 1-4 e 4 contas de id 1-4
