@@ -83,7 +83,7 @@ public class App {
             // se 1 - cadastra uma nova conta
             else if(respostaString.equals("1")){
             interfacegrafica.imprimir("Para cadastrar uma nova conta digite seu NOME e NUMERO_DA_AGENCIA."+
-            "\nAgencias disponíveis: 1111 e 1112"+
+            "\nAgencias disponíveis: 1, 2, 3 e 4"+
             "\nNome: ");
             String nome = interfacegrafica.receberString();
             interfacegrafica.imprimir("Agencia Escolhida: ");
