@@ -8,10 +8,13 @@ import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.SwingConstants;
 import javax.swing.BoxLayout;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.ImageIcon;
 
 public class LoginView {
 
@@ -47,6 +50,7 @@ public class LoginView {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\vasco escudo.png"));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -56,7 +60,8 @@ public class LoginView {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Login");
-		lblNewLabel.setBounds(155, 11, 106, 41);
+		lblNewLabel.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\conecte-se.png"));
+		lblNewLabel.setBounds(133, 11, 135, 41);
 		lblNewLabel.setFont(new Font("MS Gothic", Font.BOLD, 40));
 		lblNewLabel.setForeground(new Color(62, 118, 136));
 		panel.add(lblNewLabel);
