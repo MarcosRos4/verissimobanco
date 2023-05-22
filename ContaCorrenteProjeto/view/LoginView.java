@@ -11,10 +11,12 @@ import java.awt.Font;
 import java.awt.Toolkit;
 
 import javax.swing.SwingConstants;
-import javax.swing.BoxLayout;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class LoginView {
 
@@ -91,6 +93,12 @@ public class LoginView {
 		panel.add(textField_1);
 		
 		JButton btnNewButton = new JButton("Entrar");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		btnNewButton.setFont(new Font("MS Gothic", Font.BOLD, 20));
 		btnNewButton.setForeground(new Color(62, 118, 136));
 		btnNewButton.setBounds(155, 174, 106, 28);

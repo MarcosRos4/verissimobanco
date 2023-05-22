@@ -12,16 +12,10 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
-import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JList;
-import java.awt.List;
 import javax.swing.ListSelectionModel;
 import javax.swing.ImageIcon;
 
