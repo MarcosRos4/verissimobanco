@@ -1,6 +1,11 @@
 {
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "Conector\\mysql-connector-j-8.0.33.jar"
-    ]
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar",
+            "Conector\\mysql-connector-j-8.0.33.jar"
+        ],
+        "exclude": [
+            "c:\\verissimobanco\\jgoodies-forms-1.8.0.jar"
+        ]
+    }
 }

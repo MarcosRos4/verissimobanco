@@ -14,7 +14,7 @@ public class Conexao {
     public Conexao() {
         String servidor = "jdbc:mysql://localhost:3306/contacorrentedb"; // url do servidor
         String usuario = "root"; // usuario
-        String senha = "P@$$w0rd"; // senha
+        String senha = "password"; // senha
         String driver = "com.mysql.cj.jdbc.Driver"; // driver usado pelo java
         try {
             Class.forName(driver);
