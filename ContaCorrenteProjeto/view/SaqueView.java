@@ -1,7 +1,6 @@
 package ContaCorrenteProjeto.view;
 
-import java.awt.EventQueue;
-
+import ContaCorrenteProjeto.controller.ContaController;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -13,34 +12,20 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class SaqueView {
 
 	private JFrame frame;
 	private JTextField textField;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SaqueView window = new SaqueView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	ContaController contaController;
 	/**
 	 * Create the application.
 	 */
-	public SaqueView() {
+	public SaqueView(String numero_da_conta) {
+		
+		contaController = new ContaController(numero_da_conta);
 		initialize();
 	}
 
@@ -88,15 +73,19 @@ public class SaqueView {
 		panel.add(textField);
 		
 		JButton btnSacar = new JButton("Sacar");
-		btnSacar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 		btnSacar.setBounds(165, 188, 116, 29);
 		btnSacar.setBackground(Color.WHITE);
 		btnSacar.setForeground(new Color(62, 118, 136));
 		btnSacar.setFont(new Font("MS Gothic", Font.BOLD, 20));
 		panel.add(btnSacar);
+		
+		btnSacar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				contaController.saque(Float.parseFloat(textField.getText()));
+			}
+		});
 	}
 
 }

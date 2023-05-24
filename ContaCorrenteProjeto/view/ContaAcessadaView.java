@@ -1,7 +1,5 @@
 package ContaCorrenteProjeto.view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
@@ -13,32 +11,19 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class ContaAcessadaView {
 
 	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ContaAcessadaView window = new ContaAcessadaView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	private String numero_da_conta;
 	/**
 	 * Create the application.
 	 */
-	public ContaAcessadaView() {
+	public ContaAcessadaView(String numero_da_conta) {
+		this.numero_da_conta = numero_da_conta;
 		initialize();
 	}
 
@@ -87,21 +72,41 @@ public class ContaAcessadaView {
 		panel.add(btnSaque);
 		
 		JButton btnTransferir = new JButton("Transferir");
+		btnTransferir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		btnTransferir.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\transferir.png"));
 		btnTransferir.setBounds(252, 137, 109, 33);
 		panel.add(btnTransferir);
 		
 		JButton btnExtrato = new JButton("Extrato");
+		btnExtrato.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		btnExtrato.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\extrato.png"));
 		btnExtrato.setBounds(371, 137, 103, 33);
 		panel.add(btnExtrato);
 		
 		JButton btnSair = new JButton("Sair");
+		btnSair.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		btnSair.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\sair.png"));
 		btnSair.setBounds(371, 217, 103, 33);
 		panel.add(btnSair);
 		
 		JButton btnNewButton = new JButton("");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		btnNewButton.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\olhoaberto.png"));
 		btnNewButton.setBounds(146, 75, 35, 23);
 		panel.add(btnNewButton);

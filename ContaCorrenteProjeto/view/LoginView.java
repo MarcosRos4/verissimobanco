@@ -1,7 +1,6 @@
 package ContaCorrenteProjeto.view;
 
-import java.awt.EventQueue;
-
+import ContaCorrenteProjeto.model.dao.ContasDao;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -23,27 +22,12 @@ public class LoginView {
 	private JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginView window = new LoginView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	ContasDao contasDao = new ContasDao();
 	/**
 	 * Create the application.
 	 */
 	public LoginView() {
+		
 		initialize();
 	}
 
@@ -97,6 +81,14 @@ public class LoginView {
 			@Override
 			
 			public void mouseClicked(MouseEvent e) {
+								
+				if (contasDao.existe(textField_1.getText())) {
+					ContaAcessadaView contaAcessadaView = new ContaAcessadaView(textField_1.getText());
+					frame.dispose();
+				}
+				else{
+
+				}
 			}
 		});
 		btnNewButton.setFont(new Font("MS Gothic", Font.BOLD, 20));
@@ -115,5 +107,9 @@ public class LoginView {
 		btnNewButton_1.setFont(new Font("MS Gothic", Font.BOLD, 12));
 		btnNewButton_1.setBounds(214, 227, 106, 23);
 		panel.add(btnNewButton_1);
+		
+		JLabel lblNewLabel_3 = new JLabel("New label");
+		lblNewLabel_3.setBounds(177, 110, 46, 14);
+		panel.add(lblNewLabel_3);
 	}
 }

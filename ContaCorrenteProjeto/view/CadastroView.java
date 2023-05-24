@@ -1,7 +1,6 @@
 package ContaCorrenteProjeto.view;
 
-import java.awt.EventQueue;
-
+import ContaCorrenteProjeto.model.dao.ContasDao;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -15,34 +14,18 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
-
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 
 public class CadastroView {
 
 	private JFrame frame;
-	private JTextField textField;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CadastroView window = new CadastroView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	private ContasDao contasDao;
 	/**
 	 * Create the application.
 	 */
 	public CadastroView() {
+		contasDao = new ContasDao();
 		initialize();
 	}
 
@@ -68,7 +51,7 @@ public class CadastroView {
 		lblNewLabel.setFont(new Font("MS Gothic", Font.BOLD, 40));
 		panel.add(lblNewLabel);
 		
-		textField = new JTextField();
+		JTextField textField = new JTextField();
 		textField.setFont(new Font("MS Gothic", Font.BOLD, 15));
 		textField.setBounds(120, 212, 239, 22);
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -99,10 +82,7 @@ public class CadastroView {
 		JButton btnNewButton = new JButton("Cadastrar Conta");
 		btnNewButton.setBounds(120, 259, 239, 35);
 		btnNewButton.setForeground(new Color(62, 118, 136));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 		
 		JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("4");
 		rdbtnNewRadioButton_3.setBounds(279, 146, 33, 25);
@@ -112,17 +92,43 @@ public class CadastroView {
 		btnNewButton.setFont(new Font("MS Gothic", Font.BOLD, 25));
 		panel.add(btnNewButton);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("1");
-		rdbtnNewRadioButton.setSelected(true);
-		rdbtnNewRadioButton.setBounds(174, 146, 33, 25);
-		rdbtnNewRadioButton.setVerticalAlignment(SwingConstants.BOTTOM);
-		rdbtnNewRadioButton.setFont(new Font("MS Gothic", Font.BOLD, 15));
-		panel.add(rdbtnNewRadioButton);
+		JRadioButton rdbtnNewRadioButton_0 = new JRadioButton("1");
+		rdbtnNewRadioButton_0.setSelected(true);
+		rdbtnNewRadioButton_0.setBounds(174, 146, 33, 25);
+		rdbtnNewRadioButton_0.setVerticalAlignment(SwingConstants.BOTTOM);
+		rdbtnNewRadioButton_0.setFont(new Font("MS Gothic", Font.BOLD, 15));
+		panel.add(rdbtnNewRadioButton_0);
 		
 		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("2");
 		rdbtnNewRadioButton_1.setBounds(209, 146, 33, 25);
 		rdbtnNewRadioButton_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		rdbtnNewRadioButton_1.setFont(new Font("MS Gothic", Font.BOLD, 15));
 		panel.add(rdbtnNewRadioButton_1);
+
+		ButtonGroup buttonGroup = new ButtonGroup();
+		buttonGroup.add(rdbtnNewRadioButton_0);
+		buttonGroup.add(rdbtnNewRadioButton_1);
+		buttonGroup.add(rdbtnNewRadioButton_2);
+		buttonGroup.add(rdbtnNewRadioButton_3);
+		
+		// evento de mouse click do botao cadastrar
+		btnNewButton.addActionListener(new ActionListener() {
+			String agenciaEscolhida;
+			public void actionPerformed(ActionEvent e) {
+				if (rdbtnNewRadioButton_0.isSelected()) {
+					agenciaEscolhida = "1";
+				}
+				else if (rdbtnNewRadioButton_1.isSelected()) {
+					agenciaEscolhida = "2";
+				}
+				else if (rdbtnNewRadioButton_2.isSelected()) {
+					agenciaEscolhida = "3";
+				}
+				else{
+					agenciaEscolhida = "4";
+				}
+				contasDao.inserirContas(textField.getText(), agenciaEscolhida);
+			}
+		});
 	}
 }

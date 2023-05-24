@@ -82,5 +82,24 @@ public class ContasDao {
             return null;
         }
     }
+    // retorna verdadeiro se a conta existe, falso se nao existe
+    public boolean existe(String numero_da_conta) {
+        try {
+            result = stm.executeQuery(String.format("SELECT * from contas WHERE numero_da_conta = %s", numero_da_conta));
+            result.next();
+            
+            if (result.getString("nome") == null) {
+                System.out.println("a conta NAO existe yy");
+                return false;
+            }
+            System.out.println("a conta existe");
+            return true;
+        } catch (Exception e) {
+            
+            System.out.println(e.getMessage());
+            System.out.println("a conta NAO existe xx");
+            return false;
+        }
+    }
 
 }

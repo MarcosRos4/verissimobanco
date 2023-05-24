@@ -1,7 +1,5 @@
 package ContaCorrenteProjeto.view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -11,30 +9,13 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.Toolkit;
 
-public class ConfirmacaoCadastro {
+public class ConfirmacaoCadastroView {
 
 	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ConfirmacaoCadastro window = new ConfirmacaoCadastro();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the application.
 	 */
-	public ConfirmacaoCadastro() {
+	public ConfirmacaoCadastroView() {
 		initialize();
 	}
 

@@ -1,7 +1,6 @@
 package ContaCorrenteProjeto.view;
 
-import java.awt.EventQueue;
-
+import ContaCorrenteProjeto.controller.TransferenciaController;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -15,36 +14,23 @@ import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
+import javax.swing.ButtonGroup;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TransferenciaView {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TransferenciaView window = new TransferenciaView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	TransferenciaController transferenciaController;
+	private String conta_destino;
 	/**
 	 * Create the application.
 	 */
-	public TransferenciaView() {
+	public TransferenciaView(String numero_da_conta, String conta_destino) {
+		transferenciaController = new TransferenciaController(numero_da_conta);
+		this.conta_destino = conta_destino;
 		initialize();
 	}
-
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -81,7 +67,7 @@ public class TransferenciaView {
 		lblDigiteOValor_1.setFont(new Font("MS Gothic", Font.BOLD, 15));
 		panel.add(lblDigiteOValor_1);
 		
-		textField = new JTextField();
+		JTextField textField = new JTextField();
 		textField.setBounds(297, 74, 116, 27);
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setFont(new Font("MS Gothic", Font.BOLD, 20));
@@ -95,7 +81,7 @@ public class TransferenciaView {
 		lblDigiteOValor_1_1.setFont(new Font("MS Gothic", Font.BOLD, 15));
 		panel.add(lblDigiteOValor_1_1);
 		
-		textField_1 = new JTextField();
+		JTextField textField_1 = new JTextField();
 		textField_1.setBounds(297, 112, 116, 27);
 		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_1.setFont(new Font("MS Gothic", Font.BOLD, 20));
@@ -116,12 +102,12 @@ public class TransferenciaView {
 		lblDigiteOValor_1_1_1.setBounds(10, 162, 286, 16);
 		panel.add(lblDigiteOValor_1_1_1);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("1");
-		rdbtnNewRadioButton.setVerticalAlignment(SwingConstants.BOTTOM);
-		rdbtnNewRadioButton.setSelected(true);
-		rdbtnNewRadioButton.setFont(new Font("MS Gothic", Font.BOLD, 15));
-		rdbtnNewRadioButton.setBounds(144, 187, 33, 25);
-		panel.add(rdbtnNewRadioButton);
+		JRadioButton rdbtnNewRadioButton_0 = new JRadioButton("1");
+		rdbtnNewRadioButton_0.setVerticalAlignment(SwingConstants.BOTTOM);
+		rdbtnNewRadioButton_0.setSelected(true);
+		rdbtnNewRadioButton_0.setFont(new Font("MS Gothic", Font.BOLD, 15));
+		rdbtnNewRadioButton_0.setBounds(144, 187, 33, 25);
+		panel.add(rdbtnNewRadioButton_0);
 		
 		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("2");
 		rdbtnNewRadioButton_1.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -140,6 +126,35 @@ public class TransferenciaView {
 		rdbtnNewRadioButton_3.setFont(new Font("MS Gothic", Font.BOLD, 15));
 		rdbtnNewRadioButton_3.setBounds(249, 187, 33, 25);
 		panel.add(rdbtnNewRadioButton_3);
+
+		ButtonGroup buttonGroup = new ButtonGroup();
+		buttonGroup.add(rdbtnNewRadioButton_0);
+		buttonGroup.add(rdbtnNewRadioButton_1);
+		buttonGroup.add(rdbtnNewRadioButton_2);
+		buttonGroup.add(rdbtnNewRadioButton_3);
+
+		btnSacar.addMouseListener(new MouseAdapter() {
+			//String agenciaEscolhida;
+			public void mouseClicked(MouseEvent e) {
+				/*
+				if (rdbtnNewRadioButton_0.isSelected()) {
+                    agenciaEscolhida = "1";
+                }
+                else if (rdbtnNewRadioButton_1.isSelected()) {
+                    agenciaEscolhida = "2";
+                }
+                else if (rdbtnNewRadioButton_2.isSelected()) {
+                    agenciaEscolhida = "3";
+                }
+                else{
+                    agenciaEscolhida = "4";
+                }
+				*/
+				transferenciaController.transferir(conta_destino, textField_1.getText());
+			}
+		});
+
+		
 	}
 
 }

@@ -1,7 +1,6 @@
 package ContaCorrenteProjeto.view;
 
-import java.awt.EventQueue;
-
+import ContaCorrenteProjeto.controller.ContaController;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -12,35 +11,21 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
-
 import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class DepositoView {
 
 	private JFrame frame;
 	private JTextField textField;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DepositoView window = new DepositoView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	ContaController contaController;
 	/**
 	 * Create the application.
 	 */
-	public DepositoView() {
+	public DepositoView(String numero_da_conta) {
 		initialize();
+		contaController = new ContaController(numero_da_conta);
 	}
 
 	/**
@@ -86,9 +71,16 @@ public class DepositoView {
 		textField.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Depositar");
-		btnNewButton.setBounds(155, 194, 129, 29);
+		btnNewButton.setBounds(145, 194, 150, 29);
 		btnNewButton.setFont(new Font("MS Gothic", Font.BOLD, 20));
 		btnNewButton.setForeground(new Color(62, 118, 136));
 		panel.add(btnNewButton);
+		
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				contaController.deposito(Float.parseFloat(textField.getText()));
+			}
+		});
 	}
 }
