@@ -17,16 +17,17 @@ import java.awt.event.MouseEvent;
 
 public class SaqueView {
 
-	private JFrame frame;
-	private JTextField textField;
+	private JFrame frame, parentFrame;
+	private JTextField txtDigiteUmValor;
 	ContaController contaController;
 	/**
 	 * Create the application.
 	 */
-	public SaqueView(String numero_da_conta) {
-		
-		contaController = new ContaController(numero_da_conta);
+	public SaqueView(String numero_da_conta, String numero_da_agencia, JFrame frame) {
+		this.parentFrame = frame;
+		contaController = new ContaController(numero_da_conta, numero_da_agencia);
 		initialize();
+		this.frame.setVisible(true);
 	}
 
 	/**
@@ -35,7 +36,7 @@ public class SaqueView {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\vasco escudo.png"));
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(735, 390, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
@@ -65,25 +66,65 @@ public class SaqueView {
 		lblDigiteOValor_1.setFont(new Font("MS Gothic", Font.BOLD, 20));
 		panel.add(lblDigiteOValor_1);
 		
-		textField = new JTextField();
-		textField.setBounds(165, 150, 116, 27);
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setFont(new Font("MS Gothic", Font.BOLD, 20));
-		textField.setColumns(10);
-		panel.add(textField);
+		txtDigiteUmValor = new JTextField();
+		txtDigiteUmValor.setBounds(69, 150, 287, 27);
+		txtDigiteUmValor.setHorizontalAlignment(SwingConstants.CENTER);
+		txtDigiteUmValor.setFont(new Font("MS Gothic", Font.BOLD, 20));
+		txtDigiteUmValor.setColumns(10);
+		panel.add(txtDigiteUmValor);
 		
 		JButton btnSacar = new JButton("Sacar");
-		
-		btnSacar.setBounds(165, 188, 116, 29);
+		btnSacar.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\perdas.png"));
+		btnSacar.setBounds(69, 188, 139, 29);
 		btnSacar.setBackground(Color.WHITE);
 		btnSacar.setForeground(new Color(62, 118, 136));
 		btnSacar.setFont(new Font("MS Gothic", Font.BOLD, 20));
 		panel.add(btnSacar);
 		
+		JButton btnSair = new JButton("Sair");
+		btnSair.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\sair.png"));
+		btnSair.setForeground(new Color(62, 118, 136));
+		btnSair.setFont(new Font("MS Gothic", Font.BOLD, 20));
+		btnSair.setBackground(Color.WHITE);
+		btnSair.setBounds(218, 188, 138, 29);
+		panel.add(btnSair);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setFont(new Font("MS Gothic", Font.BOLD, 20));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(69, 228, 287, 22);
+		panel.add(lblNewLabel);
+		
+		// evento mouse click botao sair
+		btnSair.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				parentFrame.setVisible(true);
+				frame.dispose();
+			}
+		});
+
+		// evento mouse click botao sacar
 		btnSacar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				contaController.saque(Float.parseFloat(textField.getText()));
+				try {
+					contaController.saque(Float.parseFloat(txtDigiteUmValor.getText()));
+					lblNewLabel.setForeground(Color.GREEN);
+					lblNewLabel.setText("Saque Concluído com Sucesso");
+				} catch (Exception exception) {
+					lblNewLabel.setForeground(Color.GREEN);
+					lblNewLabel.setText("Valor Inválido");
+				}
+				txtDigiteUmValor.setText("");
+			}
+		});
+
+		// evento mouse click textfield
+		txtDigiteUmValor.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				lblNewLabel.setText("");
 			}
 		});
 	}

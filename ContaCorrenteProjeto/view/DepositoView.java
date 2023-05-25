@@ -17,15 +17,17 @@ import java.awt.event.MouseEvent;
 
 public class DepositoView {
 
-	private JFrame frame;
+	private JFrame frame, parentFrame;
 	private JTextField textField;
 	ContaController contaController;
 	/**
 	 * Create the application.
 	 */
-	public DepositoView(String numero_da_conta) {
+	public DepositoView(String numero_da_conta, String numero_da_agencia, JFrame frame) {
+		contaController = new ContaController(numero_da_conta, numero_da_agencia);
+		this.parentFrame = frame;
 		initialize();
-		contaController = new ContaController(numero_da_conta);
+		this.frame.setVisible(true);
 	}
 
 	/**
@@ -33,7 +35,7 @@ public class DepositoView {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(735, 390, 450, 300);
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\vasco escudo.png"));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -43,7 +45,7 @@ public class DepositoView {
 		panel.setLayout(null);
 		
 		JLabel lblDepsito = new JLabel("Depósito");
-		lblDepsito.setBounds(127, 34, 157, 31);
+		lblDepsito.setBounds(127, 11, 157, 31);
 		lblDepsito.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDepsito.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\ganho.png"));
 		lblDepsito.setForeground(new Color(62, 118, 136));
@@ -51,35 +53,71 @@ public class DepositoView {
 		panel.add(lblDepsito);
 		
 		JLabel lblSaldoAtualR = new JLabel("Saldo Atual R$: $$$$$");
-		lblSaldoAtualR.setBounds(74, 77, 287, 26);
+		lblSaldoAtualR.setBounds(74, 54, 287, 26);
 		lblSaldoAtualR.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSaldoAtualR.setForeground(new Color(62, 118, 136));
 		lblSaldoAtualR.setFont(new Font("MS Gothic", Font.BOLD, 25));
 		panel.add(lblSaldoAtualR);
 		
 		JLabel lblDigiteOValor = new JLabel("Digite o valor a ser depositado:");
-		lblDigiteOValor.setBounds(45, 114, 337, 21);
+		lblDigiteOValor.setBounds(45, 91, 337, 21);
 		lblDigiteOValor.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDigiteOValor.setForeground(new Color(62, 118, 136));
 		lblDigiteOValor.setFont(new Font("MS Gothic", Font.BOLD, 20));
 		panel.add(lblDigiteOValor);
 		
 		textField = new JTextField();
-		textField.setBounds(155, 146, 129, 27);
+		textField.setBounds(155, 123, 129, 27);
 		textField.setFont(new Font("MS Gothic", Font.BOLD, 20));
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Depositar");
-		btnNewButton.setBounds(145, 194, 150, 29);
+		btnNewButton.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\ganho.png"));
+		btnNewButton.setBounds(45, 195, 179, 29);
 		btnNewButton.setFont(new Font("MS Gothic", Font.BOLD, 20));
 		btnNewButton.setForeground(new Color(62, 118, 136));
 		panel.add(btnNewButton);
 		
+		JButton btnSair = new JButton("Sair");
+		btnSair.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\sair.png"));
+		btnSair.setForeground(new Color(62, 118, 136));
+		btnSair.setFont(new Font("MS Gothic", Font.BOLD, 20));
+		btnSair.setBounds(234, 195, 150, 29);
+		panel.add(btnSair);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setForeground(new Color(0, 128, 0));
+		lblNewLabel.setBackground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("MS Gothic", Font.BOLD, 20));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(45, 163, 337, 21);
+		panel.add(lblNewLabel);
+
+		// evento mouse click textfield valor
+		textField.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				lblNewLabel.setText("");
+			}
+		});
+		
+		// evento mouse click boato depositar
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				contaController.deposito(Float.parseFloat(textField.getText()));
+				lblNewLabel.setText("Deposito Concluido com sucesso!");
+				textField.setText("");
+			}
+		});
+
+		// evento mouse click botao sair
+		btnSair.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				parentFrame.setVisible(true);
+				frame.dispose();
 			}
 		});
 	}

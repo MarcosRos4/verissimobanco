@@ -13,9 +13,11 @@ import javax.swing.SwingConstants;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JRadioButton;
 
 public class LoginView {
 
@@ -29,6 +31,7 @@ public class LoginView {
 	public LoginView() {
 		
 		initialize();
+		this.frame.setVisible(true);
 	}
 
 	/**
@@ -37,13 +40,19 @@ public class LoginView {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\vasco escudo.png"));
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(735, 390, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
 		panel.setForeground(new Color(0, 0, 0));
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
+		
+		JLabel lblNewLabel_3 = new JLabel("Agência: ");
+		lblNewLabel_3.setForeground(new Color(62, 118, 136));
+		lblNewLabel_3.setFont(new Font("MS Gothic", Font.BOLD, 22));
+		lblNewLabel_3.setBounds(10, 141, 105, 23);
+		panel.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel = new JLabel("Login");
 		lblNewLabel.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\conecte-se.png"));
@@ -55,45 +64,30 @@ public class LoginView {
 		JLabel lblNewLabel_1 = new JLabel("Nome:");
 		lblNewLabel_1.setFont(new Font("MS Gothic", Font.BOLD, 22));
 		lblNewLabel_1.setForeground(new Color(62, 118, 136));
-		lblNewLabel_1.setBounds(10, 70, 106, 41);
-		lblNewLabel_1.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblNewLabel_1.setBounds(10, 68, 58, 23);
 		panel.add(lblNewLabel_1);
 		
 		textField = new JTextField();
-		textField.setBounds(74, 83, 350, 28);
+		textField.setBounds(74, 63, 350, 28);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Numero da Conta:");
-		lblNewLabel_1_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNewLabel_1_1.setForeground(new Color(62, 118, 136));
 		lblNewLabel_1_1.setFont(new Font("MS Gothic", Font.BOLD, 22));
-		lblNewLabel_1_1.setBounds(10, 122, 186, 41);
+		lblNewLabel_1_1.setBounds(10, 107, 186, 23);
 		panel.add(lblNewLabel_1_1);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(196, 135, 228, 28);
+		textField_1.setBounds(196, 102, 228, 28);
 		panel.add(textField_1);
 		
 		JButton btnNewButton = new JButton("Entrar");
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
-			
-			public void mouseClicked(MouseEvent e) {
-								
-				if (contasDao.existe(textField_1.getText())) {
-					ContaAcessadaView contaAcessadaView = new ContaAcessadaView(textField_1.getText());
-					frame.dispose();
-				}
-				else{
-
-				}
-			}
-		});
+		
 		btnNewButton.setFont(new Font("MS Gothic", Font.BOLD, 20));
 		btnNewButton.setForeground(new Color(62, 118, 136));
-		btnNewButton.setBounds(155, 174, 106, 28);
+		btnNewButton.setBounds(147, 188, 106, 28);
 		panel.add(btnNewButton);
 		
 		JLabel lblNewLabel_2 = new JLabel("Ainda não tem conta?");
@@ -108,8 +102,68 @@ public class LoginView {
 		btnNewButton_1.setBounds(214, 227, 106, 23);
 		panel.add(btnNewButton_1);
 		
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setBounds(177, 110, 46, 14);
-		panel.add(lblNewLabel_3);
+		JRadioButton rdbtnNewRadioButton_0 = new JRadioButton("1");
+		rdbtnNewRadioButton_0.setFont(new Font("MS Gothic", Font.BOLD, 15));
+		rdbtnNewRadioButton_0.setBounds(121, 145, 33, 25);
+		panel.add(rdbtnNewRadioButton_0);
+		
+		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("2");
+		rdbtnNewRadioButton_1.setFont(new Font("MS Gothic", Font.BOLD, 15));
+		rdbtnNewRadioButton_1.setBounds(156, 145, 33, 25);
+		panel.add(rdbtnNewRadioButton_1);
+		
+		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("3");
+		rdbtnNewRadioButton_2.setFont(new Font("MS Gothic", Font.BOLD, 15));
+		rdbtnNewRadioButton_2.setBounds(191, 145, 33, 25);
+		panel.add(rdbtnNewRadioButton_2);
+		
+		JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("4");
+		rdbtnNewRadioButton_3.setFont(new Font("MS Gothic", Font.BOLD, 15));
+		rdbtnNewRadioButton_3.setBounds(226, 145, 33, 25);
+		panel.add(rdbtnNewRadioButton_3);
+
+		ButtonGroup buttonGroup = new ButtonGroup();
+		buttonGroup.add(rdbtnNewRadioButton_0);
+		buttonGroup.add(rdbtnNewRadioButton_1);
+		buttonGroup.add(rdbtnNewRadioButton_2);
+		buttonGroup.add(rdbtnNewRadioButton_3);
+
+		// evento mouse click botao "Entrar"
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			
+			public void mouseClicked(MouseEvent e) {
+				String agenciaEscolhida;
+				if (rdbtnNewRadioButton_0.isSelected()) {
+					agenciaEscolhida = "1";
+				}
+				else if (rdbtnNewRadioButton_1.isSelected()) {
+					agenciaEscolhida = "2";
+				}
+				else if (rdbtnNewRadioButton_2.isSelected()) {
+					agenciaEscolhida = "3";
+				}
+				else{
+					agenciaEscolhida = "4";
+				}
+								
+				if (contasDao.existe(textField_1.getText())) {
+					ContaAcessadaView contaAcessadaView = new ContaAcessadaView(textField_1.getText(), agenciaEscolhida);
+					frame.dispose();
+				}
+				else{
+
+				}
+			}
+		});
+
+		// evento mouse click boasto "Criar Conta"
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				CadastroView cadastroView = new CadastroView();
+				frame.dispose();
+			}
+		});
 	}
 }

@@ -18,32 +18,21 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.ImageIcon;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ExtratoView {
 
-	private JFrame frame;
+	private JFrame frame, parentFrame;
 	private JTable table;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ExtratoView window = new ExtratoView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
 	 */
-	public ExtratoView() {
+	public ExtratoView(String numero_da_conta, String numero_da_agencia, JFrame frame) {
+
+		this.parentFrame = frame;
+		this.frame.setVisible(true);
 		initialize();
 	}
 
@@ -53,7 +42,9 @@ public class ExtratoView {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\vasco escudo.png"));
-		
+		frame.setBounds(735, 390, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		JPanel panel = new JPanel();
 		panel.setBackground(SystemColor.menu);
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
@@ -122,5 +113,14 @@ public class ExtratoView {
 		btnNewButton.setFont(new Font("MS Gothic", Font.BOLD, 15));
 		btnNewButton.setBounds(150, 204, 95, 33);
 		panel.add(btnNewButton);
+
+		// evento mouse click botao sair
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				parentFrame.setVisible(true);
+				frame.dispose();
+			}
+		});
 	}
 }

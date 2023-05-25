@@ -27,6 +27,7 @@ public class CadastroView {
 	public CadastroView() {
 		contasDao = new ContasDao();
 		initialize();
+		this.frame.setVisible(true);
 	}
 
 	/**
@@ -36,7 +37,7 @@ public class CadastroView {
 		frame = new JFrame();
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\vasco escudo.png"));
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 500, 400);
+		frame.setBounds(735, 390, 500, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
@@ -80,7 +81,7 @@ public class CadastroView {
 		panel.add(rdbtnNewRadioButton_2);
 		
 		JButton btnNewButton = new JButton("Cadastrar Conta");
-		btnNewButton.setBounds(120, 259, 239, 35);
+		btnNewButton.setBounds(86, 257, 306, 41);
 		btnNewButton.setForeground(new Color(62, 118, 136));
 		
 		
@@ -128,6 +129,8 @@ public class CadastroView {
 					agenciaEscolhida = "4";
 				}
 				contasDao.inserirContas(textField.getText(), agenciaEscolhida);
+				ConfirmacaoCadastroView confirmacaoCadastroView =  new ConfirmacaoCadastroView(textField.getText(), agenciaEscolhida);
+				frame.dispose();
 			}
 		});
 	}

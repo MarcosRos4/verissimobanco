@@ -49,12 +49,12 @@ public class ContasDao {
         }
     }
     // retorna o saldo atual de uma dada conta
-    public float getSaldo(String numero_da_conta) {
+    public float getSaldo(String numero_da_conta, String numero_da_agencia) {
         try {
-            result = stm.executeQuery(String.format("SELECT saldo FROM contas WHERE numero_da_conta = %s",
-            numero_da_conta));
+            result = stm.executeQuery(String.format("SELECT saldo FROM contas WHERE numero_da_conta = %s && agencias_numero_da_agencia = %s",
+            numero_da_conta, numero_da_agencia));
             result.next();
-            return result.getFloat(1);
+            return result.getFloat("saldo");
         } catch(Exception e) {
             return 0;
         }
@@ -70,13 +70,13 @@ public class ContasDao {
             System.out.println("Erro na Exclusao: "+ e.getMessage());
         }
     }
-    // retorna o nome de uma dada conta a partir do numero_da_conta
-    public String getNome(String numero_da_conta){
+    // retorna o nome de uma dada conta a partir do numero_da_conta e do numero da agencia
+    public String getNome(String numero_da_conta, String numero_da_agencia){
         try {
-            String minhaQuery = String.format("SELECT nome FROM contas WHERE numero_da_conta = %s", numero_da_conta);
+            String minhaQuery = String.format("SELECT nome FROM contas WHERE numero_da_conta = %s && agencias_numero_da_agencia = %s", numero_da_conta, numero_da_agencia);
             result = stm.executeQuery(minhaQuery);
             result.next();
-            return result.getString(1);
+            return result.getString("nome");
         } catch(Exception e) {
             System.out.println("Conta não encontrada.");
             return null;
@@ -101,5 +101,15 @@ public class ContasDao {
             return false;
         }
     }
-
+    // retorna o numero da conta baseado no nome e numero_da_agencia
+    public String getNumeroConta(String nome, String numero_da_agencia) {
+        try {
+            result = stm.executeQuery(String.format("SELECT * from contas WHERE agencias_numero_da_agencia = %s && nome = '%s'", numero_da_agencia, nome));
+            result.next();
+            return result.getString("numero_da_conta");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }
