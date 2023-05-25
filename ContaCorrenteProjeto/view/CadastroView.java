@@ -35,6 +35,7 @@ public class CadastroView {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("Cadastro");
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\vasco escudo.png"));
 		frame.setResizable(false);
 		frame.setBounds(735, 390, 500, 400);

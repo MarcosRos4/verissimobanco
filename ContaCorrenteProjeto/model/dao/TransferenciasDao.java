@@ -22,24 +22,16 @@ public class TransferenciasDao {
         }
     }
 
-    public void getExtrato(String numero_da_conta){
+    public ResultSet getExtrato(String numero_da_conta){
         try {
-            String minhaQuery = String.format("SELECT * FROM transferencias WHERE contas_numero_da_conta = %s",
-            numero_da_conta);
-            result = stm.executeQuery(minhaQuery);
-            if (!result.next()) {
-                System.out.println("Nenhuma transferência efetuada a partir dessa conta.");
-            }
-
-            do {
-                System.out.println(String.format("Transferência %s | Conta destino: %s | Valor R$: %s | Horário da Transferência: %s",
-                result.getString("numero_da_transferencia"), result.getString("conta_destino"),
-                result.getString("valor"), result.getString("horario_transferencia")));
-            } while (result.next());
+            String minhaQuery = String.format("SELECT * FROM transferencias WHERE contas_numero_da_conta = %s OR conta_destino = %s",
+            numero_da_conta, numero_da_conta);
+            return stm.executeQuery(minhaQuery);
             
 
         } catch(Exception e) {
             System.out.println("Erro na Exibição de Extrato: "+ e);
+            return null;
         }
 
 

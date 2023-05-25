@@ -42,6 +42,7 @@ public class ContaAcessadaView {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("Conta de "+this.nome);
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\vasco escudo.png"));
 		frame.setBounds(735, 390, 500, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -81,11 +82,6 @@ public class ContaAcessadaView {
 		panel.add(btnTransferir);
 		
 		JButton btnExtrato = new JButton("Extrato");
-		btnExtrato.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
 		btnExtrato.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\extrato.png"));
 		btnExtrato.setBounds(371, 137, 103, 33);
 		panel.add(btnExtrato);
@@ -99,11 +95,26 @@ public class ContaAcessadaView {
 		btnVerSaldo.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\olhofechado.png"));
 		btnVerSaldo.setBounds(10, 75, 35, 23);
 		panel.add(btnVerSaldo);
+
+		// evento mouse click botao extrato
+		btnExtrato.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ExtratoView extratoView = new ExtratoView(numero_da_conta, numero_da_agencia, frame);
+				olhoStatus = false;
+				lblSaldoR.setText("Saldo R$: $$$$$");
+				btnVerSaldo.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\olhofechado.png"));
+				frame.setVisible(false);
+			}
+		});
 		
 		// evento mouse click botao deposito
 		btndeposito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DepositoView depositoView = new DepositoView(numero_da_conta, numero_da_agencia, frame);
+				olhoStatus = false;
+				lblSaldoR.setText("Saldo R$: $$$$$");
+				btnVerSaldo.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\olhofechado.png"));
 				frame.setVisible(false);
 			}
 		});
@@ -112,6 +123,9 @@ public class ContaAcessadaView {
 		btnSaque.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SaqueView saqueView = new SaqueView(numero_da_conta, numero_da_agencia, frame);
+				olhoStatus = false;
+				lblSaldoR.setText("Saldo R$: $$$$$");
+				btnVerSaldo.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\olhofechado.png"));
 				frame.setVisible(false);
 			}
 		});
@@ -130,6 +144,9 @@ public class ContaAcessadaView {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				TransferenciaView transferenciaView = new TransferenciaView(numero_da_conta, numero_da_agencia, frame);
+				olhoStatus = false;
+				lblSaldoR.setText("Saldo R$: $$$$$");
+				btnVerSaldo.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\olhofechado.png"));
 				frame.setVisible(false);
 			}
 		});
@@ -140,6 +157,7 @@ public class ContaAcessadaView {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (!olhoStatus) {
+					saldo = ""+contasDao.getSaldo(numero_da_conta, numero_da_agencia);
 					olhoStatus = true;
 					lblSaldoR.setText("Saldo R$: "+ saldo);
 					btnVerSaldo.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\olhoaberto.png"));

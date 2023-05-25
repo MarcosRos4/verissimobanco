@@ -19,13 +19,15 @@ public class SaqueView {
 
 	private JFrame frame, parentFrame;
 	private JTextField txtDigiteUmValor;
-	ContaController contaController;
+	private ContaController contaController;
+	private String saldo;
 	/**
 	 * Create the application.
 	 */
 	public SaqueView(String numero_da_conta, String numero_da_agencia, JFrame frame) {
 		this.parentFrame = frame;
-		contaController = new ContaController(numero_da_conta, numero_da_agencia);
+		this.contaController = new ContaController(numero_da_conta, numero_da_agencia);
+		this.saldo = ""+contaController.getSaldo();
 		initialize();
 		this.frame.setVisible(true);
 	}
@@ -45,56 +47,55 @@ public class SaqueView {
 		panel.setLayout(null);
 		
 		JLabel lblSaque = new JLabel("Saque");
-		lblSaque.setBounds(165, 39, 109, 31);
+		lblSaque.setBounds(156, 11, 109, 31);
 		lblSaque.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSaque.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\perdas.png"));
 		lblSaque.setForeground(new Color(62, 118, 136));
 		lblSaque.setFont(new Font("MS Gothic", Font.BOLD, 30));
 		panel.add(lblSaque);
 		
-		JLabel lblSaldoAtualR = new JLabel("Saldo Atual R$: $$$$$");
-		lblSaldoAtualR.setBounds(69, 81, 287, 26);
+		JLabel lblSaldoAtualR = new JLabel("Saldo Atual R$: "+saldo);
+		lblSaldoAtualR.setBounds(10, 53, 414, 26);
 		lblSaldoAtualR.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSaldoAtualR.setForeground(new Color(62, 118, 136));
 		lblSaldoAtualR.setFont(new Font("MS Gothic", Font.BOLD, 25));
 		panel.add(lblSaldoAtualR);
 		
 		JLabel lblDigiteOValor_1 = new JLabel("Digite o valor a ser sacado:");
-		lblDigiteOValor_1.setBounds(69, 118, 294, 21);
+		lblDigiteOValor_1.setBounds(69, 90, 294, 21);
 		lblDigiteOValor_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDigiteOValor_1.setForeground(new Color(62, 118, 136));
 		lblDigiteOValor_1.setFont(new Font("MS Gothic", Font.BOLD, 20));
 		panel.add(lblDigiteOValor_1);
 		
 		txtDigiteUmValor = new JTextField();
-		txtDigiteUmValor.setBounds(69, 150, 287, 27);
+		txtDigiteUmValor.setBounds(69, 122, 294, 27);
 		txtDigiteUmValor.setHorizontalAlignment(SwingConstants.CENTER);
 		txtDigiteUmValor.setFont(new Font("MS Gothic", Font.BOLD, 20));
 		txtDigiteUmValor.setColumns(10);
 		panel.add(txtDigiteUmValor);
 		
-		JButton btnSacar = new JButton("Sacar");
-		btnSacar.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\perdas.png"));
-		btnSacar.setBounds(69, 188, 139, 29);
-		btnSacar.setBackground(Color.WHITE);
-		btnSacar.setForeground(new Color(62, 118, 136));
-		btnSacar.setFont(new Font("MS Gothic", Font.BOLD, 20));
-		panel.add(btnSacar);
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setForeground(new Color(0, 128, 0));
+		lblNewLabel.setFont(new Font("MS Gothic", Font.BOLD, 20));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(69, 163, 294, 21);
+		panel.add(lblNewLabel);
 		
 		JButton btnSair = new JButton("Sair");
 		btnSair.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\sair.png"));
 		btnSair.setForeground(new Color(62, 118, 136));
 		btnSair.setFont(new Font("MS Gothic", Font.BOLD, 20));
-		btnSair.setBackground(Color.WHITE);
-		btnSair.setBounds(218, 188, 138, 29);
+		btnSair.setBounds(218, 195, 145, 29);
 		panel.add(btnSair);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setFont(new Font("MS Gothic", Font.BOLD, 20));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(69, 228, 287, 22);
-		panel.add(lblNewLabel);
-		
+		JButton btnSacar = new JButton("Sacar");
+		btnSacar.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\perdas.png"));
+		btnSacar.setForeground(new Color(62, 118, 136));
+		btnSacar.setFont(new Font("MS Gothic", Font.BOLD, 20));
+		btnSacar.setBounds(69, 195, 150, 29);
+		panel.add(btnSacar);
+
 		// evento mouse click botao sair
 		btnSair.addMouseListener(new MouseAdapter() {
 			@Override
@@ -108,15 +109,23 @@ public class SaqueView {
 		btnSacar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				try {
+				
+				if (!txtDigiteUmValor.getText().equals("") && contaController.podeSacar(Float.parseFloat(txtDigiteUmValor.getText()))) {
+					
 					contaController.saque(Float.parseFloat(txtDigiteUmValor.getText()));
-					lblNewLabel.setForeground(Color.GREEN);
+					saldo = ""+contaController.getSaldo();
+					lblNewLabel.setForeground(Color.decode("#008000"));
+					lblSaldoAtualR.setText("Saldo Atual R$: "+saldo);
 					lblNewLabel.setText("Saque Concluído com Sucesso");
-				} catch (Exception exception) {
-					lblNewLabel.setForeground(Color.GREEN);
-					lblNewLabel.setText("Valor Inválido");
+
 				}
-				txtDigiteUmValor.setText("");
+				else{
+
+					lblNewLabel.setForeground(Color.RED);
+					lblNewLabel.setText("Valor Inválido");
+					txtDigiteUmValor.setText("");
+					
+				}
 			}
 		});
 

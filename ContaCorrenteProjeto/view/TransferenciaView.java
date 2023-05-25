@@ -1,5 +1,6 @@
 package ContaCorrenteProjeto.view;
 
+import ContaCorrenteProjeto.controller.ContaController;
 import ContaCorrenteProjeto.controller.TransferenciaController;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -25,14 +26,16 @@ public class TransferenciaView {
 
 	private JFrame frame, parentFrame;
 	private TransferenciaController transferenciaController;
+	private String saldo, agencia_escolhida;
+	private ContaController contaController;
 
 	/**
 	 * Create the application.
 	 */
 	public TransferenciaView(String numero_da_conta, String numero_da_agencia, JFrame frame) {
-		
-		transferenciaController = new TransferenciaController(numero_da_conta, numero_da_agencia);
-		
+		this.contaController =  new ContaController(numero_da_conta, numero_da_agencia);
+		this.transferenciaController = new TransferenciaController(numero_da_conta, numero_da_agencia);
+		saldo = ""+contaController.getSaldo();
 		this.parentFrame = frame;
 		initialize();
 		this.frame.setVisible(true);
@@ -54,7 +57,7 @@ public class TransferenciaView {
 		JLabel lblMensagemSucesso = new JLabel("");
 		lblMensagemSucesso.setBackground(new Color(0, 0, 0));
 		lblMensagemSucesso.setFont(new Font("MS Gothic", Font.BOLD, 20));
-		lblMensagemSucesso.setForeground(new Color(0, 128, 64));
+		lblMensagemSucesso.setForeground(new Color(0, 128, 0));
 		lblMensagemSucesso.setBounds(10, 191, 403, 21);
 		panel.add(lblMensagemSucesso);
 		
@@ -66,9 +69,9 @@ public class TransferenciaView {
 		lblTransferncia.setFont(new Font("MS Gothic", Font.BOLD, 30));
 		panel.add(lblTransferncia);
 		
-		JLabel lblSaldoAtualR = new JLabel("Saldo Atual R$: $$$$$");
-		lblSaldoAtualR.setBounds(10, 50, 221, 21);
-		lblSaldoAtualR.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lblSaldoAtualR = new JLabel("Saldo Atual R$: "+saldo);
+		lblSaldoAtualR.setBounds(10, 50, 403, 21);
+		lblSaldoAtualR.setHorizontalAlignment(SwingConstants.LEFT);
 		lblSaldoAtualR.setForeground(new Color(62, 118, 136));
 		lblSaldoAtualR.setFont(new Font("MS Gothic", Font.BOLD, 20));
 		panel.add(lblSaldoAtualR);
@@ -100,14 +103,6 @@ public class TransferenciaView {
 		textField_1.setFont(new Font("MS Gothic", Font.BOLD, 20));
 		textField_1.setColumns(10);
 		panel.add(textField_1);
-		
-		JButton btnSacar = new JButton("Transferir");
-		btnSacar.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\transferir.png"));
-		btnSacar.setBounds(0, 223, 277, 37);
-		btnSacar.setForeground(new Color(62, 118, 136));
-		btnSacar.setFont(new Font("MS Gothic", Font.BOLD, 20));
-		btnSacar.setBackground(new Color(240, 240, 240));
-		panel.add(btnSacar);
 		
 		JLabel lblDigiteOValor_1_1_1 = new JLabel("Escolha a agência da conta destino:");
 		lblDigiteOValor_1_1_1.setHorizontalAlignment(SwingConstants.LEFT);
@@ -154,59 +149,35 @@ public class TransferenciaView {
 		btnNewButton.setBounds(277, 223, 157, 37);
 		panel.add(btnNewButton);
 		
-		// evento mouse click transferir dinheiro
-		btnSacar.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
+		JButton btnTransferir = new JButton("Transferir");
+		btnTransferir.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\transferir.png"));
+		btnTransferir.setForeground(new Color(62, 118, 136));
+		btnTransferir.setFont(new Font("MS Gothic", Font.BOLD, 20));
+		btnTransferir.setBounds(0, 223, 279, 37);
+		panel.add(btnTransferir);
 
-				if (rdbtnNewRadioButton_0.isSelected()) {
-					try {
-						transferenciaController.transferir(textField_1.getText(), "1", textField.getText());
-						lblMensagemSucesso.setForeground(Color.GREEN);
+		// evento mouse click transferir dinheiro
+		btnTransferir.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if (rdbtnNewRadioButton_0.isSelected())      { agencia_escolhida = "1"; }
+                else if (rdbtnNewRadioButton_1.isSelected()) { agencia_escolhida = "2"; }
+                else if (rdbtnNewRadioButton_2.isSelected()) { agencia_escolhida = "3"; }
+                else if(rdbtnNewRadioButton_3.isSelected())  { agencia_escolhida = "4"; }
+
+				if (!textField.getText().equals("") && transferenciaController.podeTransferir(textField_1.getText(), "1", Float.parseFloat(textField.getText()))) {
+					transferenciaController.transferir(textField_1.getText(), "1", textField.getText());
+						lblMensagemSucesso.setForeground(Color.decode("#008000"));
 						lblMensagemSucesso.setText("Transferencia Concluida com Sucesso!");
-					} catch (Exception excp1) {
-						lblMensagemSucesso.setForeground(Color.RED);
-						lblMensagemSucesso.setText("Transferencia Não Pode Ser Concluida");
-					}
-                    
-                }
-                else if (rdbtnNewRadioButton_1.isSelected()) {
-                    try {
-						transferenciaController.transferir(textField_1.getText(), "2", textField.getText());
-						lblMensagemSucesso.setForeground(Color.GREEN);
-						lblMensagemSucesso.setText("Transferencia Concluida com Sucesso!");
-					} catch (Exception excp1) {
-						lblMensagemSucesso.setForeground(Color.RED);
-						lblMensagemSucesso.setText("Transferencia Não Pode Ser Concluida");
-					}
-                }
-                else if (rdbtnNewRadioButton_2.isSelected()) {
-                    try {
-						transferenciaController.transferir(textField_1.getText(), "3", textField.getText());
-						lblMensagemSucesso.setForeground(Color.GREEN);
-						lblMensagemSucesso.setText("Transferencia Concluida com Sucesso!");
-					} catch (Exception excp1) {
-						lblMensagemSucesso.setForeground(Color.RED);
-						lblMensagemSucesso.setText("Transferencia Não Pode Ser Concluida");
-					}
-                }
-                else if(rdbtnNewRadioButton_3.isSelected()){
-                    try {
-						transferenciaController.transferir(textField_1.getText(), "4", textField.getText());
-						lblMensagemSucesso.setText("Transferencia Concluida com Sucesso!");
-						lblMensagemSucesso.setForeground(Color.GREEN);
-					} catch (Exception excp1) {
-						lblMensagemSucesso.setForeground(Color.RED);
-						lblMensagemSucesso.setText("Transferencia Não Pode Ser Concluida");
-					}
-                }
+				}
 				else{
 					lblMensagemSucesso.setForeground(Color.RED);
-					lblMensagemSucesso.setText("Nenhuma Agência Escolhida");
+					lblMensagemSucesso.setText("Transferencia Não Pode Ser Concluida");
 				}
-
+						
 				textField.setText(""); textField_1.setText(""); buttonGroup.clearSelection();
 			}
 		});
+		
 		// evento mouse click botao "sair"
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

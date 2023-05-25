@@ -9,7 +9,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
 
-import javax.swing.SwingConstants;
+
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -39,6 +39,7 @@ public class LoginView {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("Login");
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\vasco escudo.png"));
 		frame.setBounds(735, 390, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

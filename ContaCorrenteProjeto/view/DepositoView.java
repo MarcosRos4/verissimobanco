@@ -19,12 +19,14 @@ public class DepositoView {
 
 	private JFrame frame, parentFrame;
 	private JTextField textField;
-	ContaController contaController;
+	private ContaController contaController;
+	private String saldo;
 	/**
 	 * Create the application.
 	 */
 	public DepositoView(String numero_da_conta, String numero_da_agencia, JFrame frame) {
-		contaController = new ContaController(numero_da_conta, numero_da_agencia);
+		this.contaController = new ContaController(numero_da_conta, numero_da_agencia);
+		this.saldo = ""+contaController.getSaldo();
 		this.parentFrame = frame;
 		initialize();
 		this.frame.setVisible(true);
@@ -35,6 +37,7 @@ public class DepositoView {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("Depósito");
 		frame.setBounds(735, 390, 450, 300);
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\vasco escudo.png"));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,8 +55,8 @@ public class DepositoView {
 		lblDepsito.setFont(new Font("MS Gothic", Font.BOLD, 30));
 		panel.add(lblDepsito);
 		
-		JLabel lblSaldoAtualR = new JLabel("Saldo Atual R$: $$$$$");
-		lblSaldoAtualR.setBounds(74, 54, 287, 26);
+		JLabel lblSaldoAtualR = new JLabel("Saldo Atual R$: "+saldo);
+		lblSaldoAtualR.setBounds(10, 54, 414, 26);
 		lblSaldoAtualR.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSaldoAtualR.setForeground(new Color(62, 118, 136));
 		lblSaldoAtualR.setFont(new Font("MS Gothic", Font.BOLD, 25));
@@ -67,7 +70,7 @@ public class DepositoView {
 		panel.add(lblDigiteOValor);
 		
 		textField = new JTextField();
-		textField.setBounds(155, 123, 129, 27);
+		textField.setBounds(45, 123, 337, 27);
 		textField.setFont(new Font("MS Gothic", Font.BOLD, 20));
 		panel.add(textField);
 		textField.setColumns(10);
@@ -83,7 +86,7 @@ public class DepositoView {
 		btnSair.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\sair.png"));
 		btnSair.setForeground(new Color(62, 118, 136));
 		btnSair.setFont(new Font("MS Gothic", Font.BOLD, 20));
-		btnSair.setBounds(234, 195, 150, 29);
+		btnSair.setBounds(221, 195, 163, 29);
 		panel.add(btnSair);
 		
 		JLabel lblNewLabel = new JLabel("");
@@ -106,9 +109,22 @@ public class DepositoView {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				contaController.deposito(Float.parseFloat(textField.getText()));
-				lblNewLabel.setText("Deposito Concluido com sucesso!");
-				textField.setText("");
+				if (!textField.getText().equals("") && contaController.podeDepositar(Float.parseFloat(textField.getText()))) {
+
+					contaController.deposito(Float.parseFloat(textField.getText()));
+					saldo = ""+contaController.getSaldo();
+					lblNewLabel.setForeground(Color.decode("#008000"));
+					lblNewLabel.setText("Deposito Concluido com sucesso!");
+					textField.setText("");
+					lblSaldoAtualR.setText("Saldo Atual R$: "+saldo);
+
+				}
+				else{
+					lblNewLabel.setForeground(Color.RED);
+					lblNewLabel.setText("Deposito Não Conluído!");
+					textField.setText("");
+
+				}
 			}
 		});
 
@@ -118,6 +134,7 @@ public class DepositoView {
 			public void mouseClicked(MouseEvent e) {
 				parentFrame.setVisible(true);
 				frame.dispose();
+				
 			}
 		});
 	}

@@ -11,20 +11,13 @@ public class ContaController {
         this.numero_da_conta = numero_da_conta;   
         this.numero_da_agencia = numero_da_agencia;
     }
+
     // recebe um valor float para sacar
-    public boolean saque(float valor){
-        // se o valor for menor que o saldo disponível ele executa o saque
-        if (this.conta.getSaldo(this.numero_da_conta, this.numero_da_agencia) >= valor) {
-            this.conta.setSaldo(this.numero_da_conta, String.format("%s",(this.conta.getSaldo(this.numero_da_conta, this.numero_da_agencia) - valor)));
-            System.out.println("Saque Concluido");
-            return true;
-        }
-        // se não ele imprime que o saldo foi insuficiente
-        else{
-            System.out.println("Saldo insuficiente");
-            return false;
-        }
+    public void saque(float valor){        
+        this.conta.setSaldo(this.numero_da_conta, String.format("%s",(this.conta.getSaldo(this.numero_da_conta, this.numero_da_agencia) - valor)));
+        System.out.println("Saque Concluido");
     }
+
     // recebe um valor para depositar
     public void deposito(float valor){
         // soma o saldo atual ao valor passado
@@ -41,4 +34,17 @@ public class ContaController {
         return this.conta.getSaldo(this.numero_da_conta, this.numero_da_agencia);
     }
     
+    public boolean podeSacar(float valor){
+        if (this.conta.getSaldo(this.numero_da_conta, this.numero_da_agencia) >= valor && valor > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean podeDepositar(float valor){
+        if (valor > 0 ) {
+            return true;
+        }
+        return false;
+    }
 }

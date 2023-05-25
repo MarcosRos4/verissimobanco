@@ -38,6 +38,7 @@ public class ConfirmacaoCadastroView {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("Confirmação de Cadastro");
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\vasco escudo.png"));
 		frame.setBounds(735, 390, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
