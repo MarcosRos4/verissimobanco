@@ -43,8 +43,8 @@ public class ContaAcessadaView {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("Conta de "+this.nome);
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\vasco escudo.png"));
-		frame.setBounds(735, 390, 500, 300);
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(ContaAcessadaView.class.getResource("/ContaCorrenteProjeto/view/Imagens/vasco escudo.png")));
+		frame.setBounds((Toolkit.getDefaultToolkit().getScreenSize().width/2)-225, (Toolkit.getDefaultToolkit().getScreenSize().height/2)-150, 500, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
@@ -53,7 +53,7 @@ public class ContaAcessadaView {
 		
 		JLabel lblNewLabel = new JLabel("Conta de "+this.nome);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\conta.png"));
+		lblNewLabel.setIcon(new ImageIcon(ContaAcessadaView.class.getResource("/ContaCorrenteProjeto/view/Imagens/conta.png")));
 		lblNewLabel.setFont(new Font("MS Gothic", Font.BOLD, 30));
 		lblNewLabel.setForeground(new Color(62, 118, 136));
 		lblNewLabel.setBounds(10, 11, 464, 31);
@@ -67,32 +67,32 @@ public class ContaAcessadaView {
 		panel.add(lblSaldoR);
 		
 		JButton btndeposito = new JButton("Depósito");
-		btndeposito.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\ganho.png"));
+		btndeposito.setIcon(new ImageIcon(ContaAcessadaView.class.getResource("/ContaCorrenteProjeto/view/Imagens/ganho.png")));
 		btndeposito.setBounds(10, 137, 103, 33);
 		panel.add(btndeposito);
 		
 		JButton btnSaque = new JButton("Saque");
-		btnSaque.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\perdas.png"));
+		btnSaque.setIcon(new ImageIcon(ContaAcessadaView.class.getResource("/ContaCorrenteProjeto/view/Imagens/perdas.png")));
 		btnSaque.setBounds(123, 137, 103, 33);
 		panel.add(btnSaque);
 		
 		JButton btnTransferir = new JButton("Transferir");
-		btnTransferir.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\transferir.png"));
+		btnTransferir.setIcon(new ImageIcon(ContaAcessadaView.class.getResource("/ContaCorrenteProjeto/view/Imagens/transferir.png")));
 		btnTransferir.setBounds(252, 137, 109, 33);
 		panel.add(btnTransferir);
 		
 		JButton btnExtrato = new JButton("Extrato");
-		btnExtrato.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\extrato.png"));
+		btnExtrato.setIcon(new ImageIcon(ContaAcessadaView.class.getResource("/ContaCorrenteProjeto/view/Imagens/extrato.png")));
 		btnExtrato.setBounds(371, 137, 103, 33);
 		panel.add(btnExtrato);
 		
 		JButton btnSair = new JButton("Sair");
-		btnSair.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\sair.png"));
+		btnSair.setIcon(new ImageIcon(ContaAcessadaView.class.getResource("/ContaCorrenteProjeto/view/Imagens/sair.png")));
 		btnSair.setBounds(371, 217, 103, 33);
 		panel.add(btnSair);
 		
 		JButton btnVerSaldo = new JButton("");
-		btnVerSaldo.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\olhofechado.png"));
+		btnVerSaldo.setIcon(new ImageIcon(ContaAcessadaView.class.getResource("/ContaCorrenteProjeto/view/Imagens/olhofechado.png")));
 		btnVerSaldo.setBounds(10, 75, 35, 23);
 		panel.add(btnVerSaldo);
 
@@ -103,7 +103,7 @@ public class ContaAcessadaView {
 				ExtratoView extratoView = new ExtratoView(numero_da_conta, numero_da_agencia, frame);
 				olhoStatus = false;
 				lblSaldoR.setText("Saldo R$: $$$$$");
-				btnVerSaldo.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\olhofechado.png"));
+				btnVerSaldo.setIcon(new ImageIcon(ContaAcessadaView.class.getResource("/ContaCorrenteProjeto/view/Imagens/olhofechado.png")));
 				frame.setVisible(false);
 			}
 		});
@@ -114,7 +114,7 @@ public class ContaAcessadaView {
 				DepositoView depositoView = new DepositoView(numero_da_conta, numero_da_agencia, frame);
 				olhoStatus = false;
 				lblSaldoR.setText("Saldo R$: $$$$$");
-				btnVerSaldo.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\olhofechado.png"));
+				btnVerSaldo.setIcon(new ImageIcon(ContaAcessadaView.class.getResource("/ContaCorrenteProjeto/view/Imagens/olhofechado.png")));
 				frame.setVisible(false);
 			}
 		});
@@ -125,7 +125,7 @@ public class ContaAcessadaView {
 				SaqueView saqueView = new SaqueView(numero_da_conta, numero_da_agencia, frame);
 				olhoStatus = false;
 				lblSaldoR.setText("Saldo R$: $$$$$");
-				btnVerSaldo.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\olhofechado.png"));
+				btnVerSaldo.setIcon(new ImageIcon(ContaAcessadaView.class.getResource("/ContaCorrenteProjeto/view/Imagens/olhofechado.png")));
 				frame.setVisible(false);
 			}
 		});
@@ -146,7 +146,7 @@ public class ContaAcessadaView {
 				TransferenciaView transferenciaView = new TransferenciaView(numero_da_conta, numero_da_agencia, frame);
 				olhoStatus = false;
 				lblSaldoR.setText("Saldo R$: $$$$$");
-				btnVerSaldo.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\olhofechado.png"));
+				btnVerSaldo.setIcon(new ImageIcon(ContaAcessadaView.class.getResource("/ContaCorrenteProjeto/view/Imagens/olhofechado.png")));
 				frame.setVisible(false);
 			}
 		});
@@ -160,13 +160,13 @@ public class ContaAcessadaView {
 					saldo = ""+contasDao.getSaldo(numero_da_conta, numero_da_agencia);
 					olhoStatus = true;
 					lblSaldoR.setText("Saldo R$: "+ saldo);
-					btnVerSaldo.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\olhoaberto.png"));
+					btnVerSaldo.setIcon(new ImageIcon(ContaAcessadaView.class.getResource("/ContaCorrenteProjeto/view/Imagens/olhoaberto.png")));
 					 
 				}
 				else{
 					olhoStatus = false;
 					lblSaldoR.setText("Saldo R$: $$$$$");
-					btnVerSaldo.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\olhofechado.png"));
+					btnVerSaldo.setIcon(new ImageIcon(ContaAcessadaView.class.getResource("/ContaCorrenteProjeto/view/Imagens/olhofechado.png")));
 				}
 				
 			}

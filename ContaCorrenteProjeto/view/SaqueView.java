@@ -37,8 +37,8 @@ public class SaqueView {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\vasco escudo.png"));
-		frame.setBounds(735, 390, 450, 300);
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(SaqueView.class.getResource("/ContaCorrenteProjeto/view/Imagens/vasco escudo.png")));
+		frame.setBounds((Toolkit.getDefaultToolkit().getScreenSize().width/2)-225, (Toolkit.getDefaultToolkit().getScreenSize().height/2)-150, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
@@ -49,7 +49,7 @@ public class SaqueView {
 		JLabel lblSaque = new JLabel("Saque");
 		lblSaque.setBounds(156, 11, 109, 31);
 		lblSaque.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSaque.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\perdas.png"));
+		lblSaque.setIcon(new ImageIcon(SaqueView.class.getResource("/ContaCorrenteProjeto/view/Imagens/perdas.png")));
 		lblSaque.setForeground(new Color(62, 118, 136));
 		lblSaque.setFont(new Font("MS Gothic", Font.BOLD, 30));
 		panel.add(lblSaque);
@@ -83,14 +83,14 @@ public class SaqueView {
 		panel.add(lblNewLabel);
 		
 		JButton btnSair = new JButton("Sair");
-		btnSair.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\sair.png"));
+		btnSair.setIcon(new ImageIcon(SaqueView.class.getResource("/ContaCorrenteProjeto/view/Imagens/sair.png")));
 		btnSair.setForeground(new Color(62, 118, 136));
 		btnSair.setFont(new Font("MS Gothic", Font.BOLD, 20));
 		btnSair.setBounds(218, 195, 145, 29);
 		panel.add(btnSair);
 		
 		JButton btnSacar = new JButton("Sacar");
-		btnSacar.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\perdas.png"));
+		btnSacar.setIcon(new ImageIcon(SaqueView.class.getResource("/ContaCorrenteProjeto/view/Imagens/perdas.png")));
 		btnSacar.setForeground(new Color(62, 118, 136));
 		btnSacar.setFont(new Font("MS Gothic", Font.BOLD, 20));
 		btnSacar.setBounds(69, 195, 150, 29);

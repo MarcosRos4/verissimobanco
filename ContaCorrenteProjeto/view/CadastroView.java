@@ -36,9 +36,9 @@ public class CadastroView {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("Cadastro");
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\vasco escudo.png"));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(CadastroView.class.getResource("/ContaCorrenteProjeto/view/Imagens/cadastro.png")));
 		frame.setResizable(false);
-		frame.setBounds(735, 390, 500, 400);
+		frame.setBounds((Toolkit.getDefaultToolkit().getScreenSize().width/2)-225, (Toolkit.getDefaultToolkit().getScreenSize().height/2)-150, 500, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
@@ -46,7 +46,7 @@ public class CadastroView {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Cadastro");
-		lblNewLabel.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\cadastro.png"));
+		lblNewLabel.setIcon(new ImageIcon(CadastroView.class.getResource("/ContaCorrenteProjeto/view/Imagens/cadastro.png")));
 		lblNewLabel.setBounds(134, 64, 199, 41);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(new Color(62, 118, 136));

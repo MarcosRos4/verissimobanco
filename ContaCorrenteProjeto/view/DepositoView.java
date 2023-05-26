@@ -38,8 +38,8 @@ public class DepositoView {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("Depósito");
-		frame.setBounds(735, 390, 450, 300);
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\vasco escudo.png"));
+		frame.setBounds((Toolkit.getDefaultToolkit().getScreenSize().width/2)-225, (Toolkit.getDefaultToolkit().getScreenSize().height/2)-150, 450, 300);
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(DepositoView.class.getResource("/ContaCorrenteProjeto/view/Imagens/ganho.png")));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();

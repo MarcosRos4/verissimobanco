@@ -46,7 +46,7 @@ public class TransferenciaView {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\vasco escudo.png"));
-		frame.setBounds(735, 390, 450, 300);
+		frame.setBounds((Toolkit.getDefaultToolkit().getScreenSize().width/2)-225, (Toolkit.getDefaultToolkit().getScreenSize().height/2)-150, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
@@ -167,6 +167,7 @@ public class TransferenciaView {
 				if (!textField.getText().equals("") && transferenciaController.podeTransferir(textField_1.getText(), "1", Float.parseFloat(textField.getText()))) {
 					transferenciaController.transferir(textField_1.getText(), "1", textField.getText());
 						lblMensagemSucesso.setForeground(Color.decode("#008000"));
+						lblSaldoAtualR.setText("Saldo Atual R$: "+ contaController.getSaldo());
 						lblMensagemSucesso.setText("Transferencia Concluida com Sucesso!");
 				}
 				else{

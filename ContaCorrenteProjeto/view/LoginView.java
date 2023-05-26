@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JRadioButton;
+import javax.swing.SwingConstants;
 
 public class LoginView {
 
@@ -40,8 +41,8 @@ public class LoginView {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("Login");
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\vasco escudo.png"));
-		frame.setBounds(735, 390, 450, 300);
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(LoginView.class.getResource("/ContaCorrenteProjeto/view/Imagens/vasco escudo.png")));
+		frame.setBounds((Toolkit.getDefaultToolkit().getScreenSize().width/2)-225, (Toolkit.getDefaultToolkit().getScreenSize().height/2)-150, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
@@ -55,9 +56,10 @@ public class LoginView {
 		lblNewLabel_3.setBounds(10, 141, 105, 23);
 		panel.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel = new JLabel("Login");
-		lblNewLabel.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\conecte-se.png"));
-		lblNewLabel.setBounds(133, 11, 135, 41);
+		JLabel lblNewLabel = new JLabel("Login ");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setIcon(new ImageIcon(LoginView.class.getResource("/ContaCorrenteProjeto/view/Imagens/conecte-se.png")));
+		lblNewLabel.setBounds(10, 11, 414, 41);
 		lblNewLabel.setFont(new Font("MS Gothic", Font.BOLD, 40));
 		lblNewLabel.setForeground(new Color(62, 118, 136));
 		panel.add(lblNewLabel);

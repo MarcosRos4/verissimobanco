@@ -8,7 +8,6 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.util.Collection;
 import java.util.Vector;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -54,8 +53,8 @@ public class ExtratoView {
 	private void initialize() throws Exception{
 		frame = new JFrame();
 		frame.setTitle("Extrato");
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\vasco escudo.png"));
-		frame.setBounds(735, 390, 650, 400);
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(ExtratoView.class.getResource("/ContaCorrenteProjeto/view/Imagens/vasco escudo.png")));
+		frame.setBounds((Toolkit.getDefaultToolkit().getScreenSize().width/2)-225, (Toolkit.getDefaultToolkit().getScreenSize().height/2)-150, 650, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
@@ -64,7 +63,7 @@ public class ExtratoView {
 		panel.setLayout(null);
 		
 		JLabel lblExtrato = new JLabel("Extrato");
-		lblExtrato.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\extrato.png"));
+		lblExtrato.setIcon(new ImageIcon(ExtratoView.class.getResource("/ContaCorrenteProjeto/view/Imagens/extrato.png")));
 		lblExtrato.setBounds(245, 11, 141, 31);
 		lblExtrato.setHorizontalAlignment(SwingConstants.CENTER);
 		lblExtrato.setForeground(new Color(62, 118, 136));
@@ -88,7 +87,7 @@ public class ExtratoView {
 		scrollPane.setViewportView(table);
 		
 		JButton btnNewButton = new JButton("Sair");
-		btnNewButton.setIcon(new ImageIcon("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\sair.png"));
+		btnNewButton.setIcon(new ImageIcon(ExtratoView.class.getResource("/ContaCorrenteProjeto/view/Imagens/sair.png")));
 		btnNewButton.setForeground(new Color(62, 118, 136));
 		btnNewButton.setFont(new Font("MS Gothic", Font.BOLD, 15));
 		btnNewButton.setBounds(245, 317, 141, 33);

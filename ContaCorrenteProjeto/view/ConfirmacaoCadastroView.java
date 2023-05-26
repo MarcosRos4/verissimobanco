@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 public class ConfirmacaoCadastroView {
 
@@ -39,8 +41,8 @@ public class ConfirmacaoCadastroView {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("Confirmação de Cadastro");
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\coisasdovini2\\Programacao\\verissimobanco\\ContaCorrenteProjeto\\view\\Imagens\\vasco escudo.png"));
-		frame.setBounds(735, 390, 450, 300);
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(ConfirmacaoCadastroView.class.getResource("/ContaCorrenteProjeto/view/Imagens/vasco escudo.png")));
+		frame.setBounds((Toolkit.getDefaultToolkit().getScreenSize().width/2)-225, (Toolkit.getDefaultToolkit().getScreenSize().height/2)-150, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
@@ -48,27 +50,32 @@ public class ConfirmacaoCadastroView {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Cadastro bem Sucedido!");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setIcon(new ImageIcon(ConfirmacaoCadastroView.class.getResource("/ContaCorrenteProjeto/view/Imagens/confirma.png")));
 		lblNewLabel.setForeground(new Color(62, 118, 136));
-		lblNewLabel.setFont(new Font("MS Gothic", Font.BOLD, 20));
-		lblNewLabel.setBounds(91, 11, 233, 21);
+		lblNewLabel.setFont(new Font("MS Gothic", Font.BOLD, 25));
+		lblNewLabel.setBounds(10, 11, 414, 26);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNomeDoTitular = new JLabel("Nome do Titular: "+this.nome);
+		lblNomeDoTitular.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNomeDoTitular.setForeground(new Color(62, 118, 136));
 		lblNomeDoTitular.setFont(new Font("MS Gothic", Font.BOLD, 20));
-		lblNomeDoTitular.setBounds(30, 59, 394, 21);
+		lblNomeDoTitular.setBounds(10, 59, 414, 21);
 		panel.add(lblNomeDoTitular);
 		
 		JLabel lblAgnciaEscolhida = new JLabel("Agência Escolhida: "+this.numero_da_agencia);
+		lblAgnciaEscolhida.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAgnciaEscolhida.setForeground(new Color(62, 118, 136));
 		lblAgnciaEscolhida.setFont(new Font("MS Gothic", Font.BOLD, 20));
-		lblAgnciaEscolhida.setBounds(30, 103, 394, 21);
+		lblAgnciaEscolhida.setBounds(10, 103, 414, 21);
 		panel.add(lblAgnciaEscolhida);
 		
 		JLabel lblNumeroDaConta = new JLabel("Numero da Conta: "+this.numero_da_conta);
+		lblNumeroDaConta.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNumeroDaConta.setForeground(new Color(62, 118, 136));
 		lblNumeroDaConta.setFont(new Font("MS Gothic", Font.BOLD, 20));
-		lblNumeroDaConta.setBounds(30, 145, 394, 21);
+		lblNumeroDaConta.setBounds(10, 145, 414, 21);
 		panel.add(lblNumeroDaConta);
 		
 		JButton btnNewButton = new JButton("Continuar");
